@@ -17,7 +17,7 @@ class CorgeTest {
 
     @BeforeAll
     static void beforeAll() {
-        CorgeTest.corgeClass = Utils.testIfClassExists("com.jad.jad.Corge");
+        CorgeTest.corgeClass = Utils.testIfClassExists("com.jad.jad.jad.Corge");
     }
 
     @Test
@@ -51,26 +51,26 @@ class CorgeTest {
 
     @Test
     void fooAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.Foo", "foo", CorgeTest.corgeClass);
+        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.jad.Foo", "foo", CorgeTest.corgeClass);
     }
 
     @Test
     void constructorTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
-                                               "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
-                                               "The class jad.Foo does not exist.");
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Bar"),
+                                               "The class jad.jad.Bar does not exist.");
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Foo"),
+                                               "The class jad.jad.Foo does not exist.");
         Constructor<?> fooConstructor = assertDoesNotThrow(() -> fooClass.getDeclaredConstructor(barClass),
-                                                           "The constructor of jad.Foo does not exist.");
+                                                           "The constructor of jad.jad.Foo does not exist.");
         Constructor<?> corgeConstructor = assertDoesNotThrow(
                 () -> CorgeTest.corgeClass.getDeclaredConstructor(fooClass),
-                "The constructor of jad.Corge does not exist.");
+                "The constructor of jad.jad.Corge does not exist.");
         Object barInstance = assertDoesNotThrow(() -> barClass.getDeclaredConstructor().newInstance(),
-                                                "Failed to create an instance of jad.Bar.");
+                                                "Failed to create an instance of jad.jad.Bar.");
         Object fooInstance = assertDoesNotThrow(() -> fooConstructor.newInstance(barInstance),
-                                                "Failed to create an instance of jad.Foo.");
+                                                "Failed to create an instance of jad.jad.Foo.");
         Object corgeInstance = assertDoesNotThrow(() -> corgeConstructor.newInstance(fooInstance),
-                                                  "Failed to create an instance of jad.Corge.");
+                                                  "Failed to create an instance of jad.jad.Corge.");
         Field fooField = assertDoesNotThrow(() -> CorgeTest.corgeClass.getDeclaredField("foo"),
                                             "The field 'foo' does not exist.");
         fooField.setAccessible(true);
@@ -81,10 +81,10 @@ class CorgeTest {
 
     @Test
     void getFooAndSetFooTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
-                                               "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
-                                               "The class jad.Foo does not exist.");
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Bar"),
+                                               "The class jad.jad.Bar does not exist.");
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Foo"),
+                                               "The class jad.jad.Foo does not exist.");
         Method getFooMethod = assertDoesNotThrow(() -> CorgeTest.corgeClass.getDeclaredMethod("getFoo"),
                                                  "The method 'getFoo' does not exist.");
         Method setFooMethod = assertDoesNotThrow(() -> CorgeTest.corgeClass.getDeclaredMethod("setFoo", fooClass),
@@ -92,44 +92,44 @@ class CorgeTest {
         Method getCorgeMethod = assertDoesNotThrow(() -> fooClass.getDeclaredMethod("getCorge"),
                                                    "The method 'getCorge' does not exist.");
 
-        // Create instances of jad.Bar
+        // Create instances of jad.jad.Bar
         Object barInstance1 = assertDoesNotThrow(() -> barClass.getDeclaredConstructor().newInstance(),
-                                                 "Failed to create an instance of jad.Bar.");
+                                                 "Failed to create an instance of jad.jad.Bar.");
         Object barInstance2 = assertDoesNotThrow(() -> barClass.getDeclaredConstructor().newInstance(),
-                                                 "Failed to create an instance of jad.Bar.");
+                                                 "Failed to create an instance of jad.jad.Bar.");
 
-        // Create instances of jad.Foo
+        // Create instances of jad.jad.Foo
         Object fooInstance1 = assertDoesNotThrow(
                 () -> fooClass.getDeclaredConstructor(barInstance1.getClass()).newInstance(barInstance1),
-                "Failed to create an instance of jad.Foo.");
+                "Failed to create an instance of jad.jad.Foo.");
         Object fooInstance2 = assertDoesNotThrow(
                 () -> fooClass.getDeclaredConstructor(barInstance2.getClass()).newInstance(barInstance2),
-                "Failed to create an instance of jad.Foo.");
+                "Failed to create an instance of jad.jad.Foo.");
 
-        // Create an instance of jad.Corge
+        // Create an instance of jad.jad.Corge
         Constructor<?> corgeConstructor = assertDoesNotThrow(
                 () -> CorgeTest.corgeClass.getDeclaredConstructor(fooClass),
-                "The constructor of jad.Corge does not exist.");
+                "The constructor of jad.jad.Corge does not exist.");
         Object corgeInstance = assertDoesNotThrow(() -> corgeConstructor.newInstance(fooInstance1),
-                                                  "Failed to create an instance of jad.Corge.");
+                                                  "Failed to create an instance of jad.jad.Corge.");
 
-        // Verify the initial jad.Foo instance
+        // Verify the initial jad.jad.Foo instance
         Object returnedFoo1 = assertDoesNotThrow(() -> getFooMethod.invoke(corgeInstance),
-                                                 "Failed to invoke the method 'getFoo' on the jad.Corge instance.");
-        assertEquals(fooInstance1, returnedFoo1, "The method 'getFoo' did not return the correct jad.Foo instance.");
+                                                 "Failed to invoke the method 'getFoo' on the jad.jad.Corge instance.");
+        assertEquals(fooInstance1, returnedFoo1, "The method 'getFoo' did not return the correct jad.jad.Foo instance.");
 
-        // Set the second jad.Foo instance
+        // Set the second jad.jad.Foo instance
         assertDoesNotThrow(() -> setFooMethod.invoke(corgeInstance, fooInstance2),
-                           "Failed to invoke the method 'setFoo' with the second jad.Foo instance.");
+                           "Failed to invoke the method 'setFoo' with the second jad.jad.Foo instance.");
         Object returnedFoo2 = assertDoesNotThrow(() -> getFooMethod.invoke(corgeInstance),
-                                                 "Failed to invoke the method 'getFoo' after setting the second jad.Foo instance.");
+                                                 "Failed to invoke the method 'getFoo' after setting the second jad.jad.Foo instance.");
         assertEquals(fooInstance2, returnedFoo2,
-                     "The method 'getFoo' did not return the correct jad.Foo instance after setting the second jad.Foo instance.");
+                     "The method 'getFoo' did not return the correct jad.jad.Foo instance after setting the second jad.jad.Foo instance.");
 
-        // Verify the first jad.Foo instance's getCorge method returns null
+        // Verify the first jad.jad.Foo instance's getCorge method returns null
         Object returnedCorge1 = assertDoesNotThrow(() -> getCorgeMethod.invoke(fooInstance1),
-                                                   "Failed to invoke the method 'getCorge' on the first jad.Foo instance after setting the second jad.Foo instance.");
+                                                   "Failed to invoke the method 'getCorge' on the first jad.jad.Foo instance after setting the second jad.jad.Foo instance.");
         assertNull(returnedCorge1,
-                   "The method 'getCorge' on the first jad.Foo instance should return null after setting the second jad.Foo instance.");
+                   "The method 'getCorge' on the first jad.jad.Foo instance should return null after setting the second jad.jad.Foo instance.");
     }
 }

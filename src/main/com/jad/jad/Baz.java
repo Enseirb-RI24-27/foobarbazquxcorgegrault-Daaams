@@ -1,4 +1,4 @@
-package jad;
+package jad.jad;
 
 public class Baz {
 }

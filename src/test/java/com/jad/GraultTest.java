@@ -20,7 +20,7 @@ class GraultTest {
 
     @BeforeAll
     static void beforeAll() {
-        GraultTest.graultClass = Utils.testIfClassExists("com.jad.jad.Grault");
+        GraultTest.graultClass = Utils.testIfClassExists("com.jad.jad.jad.Grault");
     }
 
     @Test
@@ -55,32 +55,32 @@ class GraultTest {
 
     @Test
     void fooAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.Foo", "foo", GraultTest.graultClass);
+        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.jad.Foo", "foo", GraultTest.graultClass);
     }
 
     @Test
     void constructorTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
-                                               "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
-                                               "The class jad.Foo does not exist.");
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Bar"),
+                                               "The class jad.jad.Bar does not exist.");
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Foo"),
+                                               "The class jad.jad.Foo does not exist.");
         Constructor<?> fooConstructor = assertDoesNotThrow(() -> fooClass.getDeclaredConstructor(barClass),
-                                                           "The constructor of jad.Foo does not exist.");
+                                                           "The constructor of jad.jad.Foo does not exist.");
 
         Constructor<?>[] constructors = GraultTest.graultClass.getDeclaredConstructors();
         assertEquals(GraultTest.NB_OF_CONSTRUCTOR, constructors.length,
-                     "The class jad.Grault should have only " + GraultTest.NB_OF_CONSTRUCTOR + " constructor.");
+                     "The class jad.jad.Grault should have only " + GraultTest.NB_OF_CONSTRUCTOR + " constructor.");
         Constructor<?> constructor = constructors[0];
         Class<?>[] parameterTypes = constructor.getParameterTypes();
         assertEquals(GraultTest.NB_CONSTRUCTOR_PARAMETERS, parameterTypes.length,
-                     "The constructor of jad.Grault should have " + GraultTest.NB_CONSTRUCTOR_PARAMETERS + " parameter.");
-        assertEquals(fooClass, parameterTypes[0], "The parameter of the constructor should be of type jad.Foo.");
+                     "The constructor of jad.jad.Grault should have " + GraultTest.NB_CONSTRUCTOR_PARAMETERS + " parameter.");
+        assertEquals(fooClass, parameterTypes[0], "The parameter of the constructor should be of type jad.jad.Foo.");
         Object barInstance = assertDoesNotThrow(() -> barClass.getDeclaredConstructor().newInstance(),
-                                                "Failed to create an instance of jad.Bar.");
+                                                "Failed to create an instance of jad.jad.Bar.");
         Object fooInstance = assertDoesNotThrow(() -> fooConstructor.newInstance(barInstance),
-                                                "Failed to create an instance of jad.Foo.");
+                                                "Failed to create an instance of jad.jad.Foo.");
         Object graultInstance = assertDoesNotThrow(() -> constructor.newInstance(fooInstance),
-                                                   "Failed to create an instance of jad.Grault.");
+                                                   "Failed to create an instance of jad.jad.Grault.");
         Field fooField = assertDoesNotThrow(() -> GraultTest.graultClass.getDeclaredField("foo"),
                                             "The field 'foo' does not exist.");
         fooField.setAccessible(true);
@@ -91,20 +91,20 @@ class GraultTest {
 
     @Test
     void getFooTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
-                                               "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
-                                               "The class jad.Foo does not exist.");
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Bar"),
+                                               "The class jad.jad.Bar does not exist.");
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.jad.Foo"),
+                                               "The class jad.jad.Foo does not exist.");
         Constructor<?> fooConstructor = assertDoesNotThrow(() -> fooClass.getDeclaredConstructor(barClass),
-                                                           "The constructor of jad.Foo does not exist.");
+                                                           "The constructor of jad.jad.Foo does not exist.");
         Constructor<?> constructor = assertDoesNotThrow(() -> GraultTest.graultClass.getDeclaredConstructor(fooClass),
-                                                        "The constructor of jad.Grault does not exist.");
+                                                        "The constructor of jad.jad.Grault does not exist.");
         Object barInstance = assertDoesNotThrow(() -> barClass.getDeclaredConstructor().newInstance(),
-                                                "Failed to create an instance of jad.Bar.");
+                                                "Failed to create an instance of jad.jad.Bar.");
         Object fooInstance = assertDoesNotThrow(() -> fooConstructor.newInstance(barInstance),
-                                                "Failed to create an instance of jad.Foo.");
+                                                "Failed to create an instance of jad.jad.Foo.");
         Object graultInstance = assertDoesNotThrow(() -> constructor.newInstance(fooInstance),
-                                                   "Failed to create an instance of jad.Grault.");
+                                                   "Failed to create an instance of jad.jad.Grault.");
         Method getFooMethod = assertDoesNotThrow(() -> GraultTest.graultClass.getDeclaredMethod("getFoo"),
                                                  "The method 'getFoo' does not exist.");
         Object returnedFoo = assertDoesNotThrow(() -> getFooMethod.invoke(graultInstance),
