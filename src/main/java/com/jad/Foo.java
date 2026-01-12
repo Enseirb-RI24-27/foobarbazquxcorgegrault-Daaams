@@ -12,7 +12,7 @@ public class Foo {
     Foo(Bar bar) {
         this.bar = bar;
         this.qux = new Qux();
-        this.corge = new Corge();
+        this.corge = new Corge(this);
     }
 
     public void addBaz(Baz baz) {
@@ -23,6 +23,6 @@ public class Foo {
     }
 
     public void addGrault() {
-        return;
+        this.graults.add(new Grault(this));
     }
 }
