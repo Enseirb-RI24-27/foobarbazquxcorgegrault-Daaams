@@ -1,3 +1,5 @@
+package jad;
+
 import java.util.ArrayList;
 
 public class Foo {
