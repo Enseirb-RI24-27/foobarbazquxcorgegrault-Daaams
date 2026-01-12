@@ -22,8 +22,8 @@ class FooTest {
 
     @BeforeAll
     static void beforeAll() {
-        FooTest.fooClass = Utils.testIfClassExists("com.jad.jad.Foo");
-        FooTest.barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
+        FooTest.fooClass = Utils.testIfClassExists("com.jad.Foo");
+        FooTest.barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Bar"),
                                               "The class jad.Bar does not exist.");
         Constructor<?> constructor = assertDoesNotThrow(() -> FooTest.fooClass.getDeclaredConstructor(FooTest.barClass),
                                                         "The constructor of jad.Foo does not exist.");
@@ -72,28 +72,28 @@ class FooTest {
 
     @Test
     void barAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.Bar",
+        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.Bar",
                                                        "bar",
                                                        FooTest.fooClass);
     }
 
     @Test
     void bazsAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGenericType("java.util.List<com.jad.jad.Baz>",
+        Utils.testIfPrivateAttributeExistsWithGenericType("java.util.List<com.jad.Baz>",
                                                           "bazs",
                                                           FooTest.fooClass);
     }
 
     @Test
     void quxAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.Qux",
+        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.Qux",
                                                        "qux",
                                                        FooTest.fooClass);
     }
 
     @Test
     void graultsAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGenericType("java.util.List<com.jad.jad.Grault>",
+        Utils.testIfPrivateAttributeExistsWithGenericType("java.util.List<com.jad.Grault>",
                                                           "graults",
                                                           FooTest.fooClass);
     }
@@ -163,7 +163,7 @@ class FooTest {
 
     @Test
     void addBazAndGetBazsTest() {
-        Class<?> bazClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Baz"),
+        Class<?> bazClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Baz"),
                                                "The class jad.Baz does not exist.");
         Method addBazMethod = assertDoesNotThrow(() -> FooTest.fooClass.getDeclaredMethod("addBaz", bazClass),
                                                  "The method 'addBaz' does not exist.");
@@ -192,7 +192,7 @@ class FooTest {
 
     @Test
     void getCorgeAndSetCorgeTest() {
-        Class<?> corgeClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Corge"),
+        Class<?> corgeClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Corge"),
                                                  "The class jad.Corge does not exist.");
         Method getCorgeMethod = assertDoesNotThrow(() -> FooTest.fooClass.getDeclaredMethod("getCorge"),
                                                    "The method 'getCorge' does not exist.");
@@ -255,7 +255,7 @@ class FooTest {
                                                     "The method 'addGrault' does not exist.");
         Method getGraultsMethod = assertDoesNotThrow(() -> FooTest.fooClass.getDeclaredMethod("getGraults"),
                                                      "The method 'getGraults' does not exist.");
-        Method getFooMethod = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Grault")
+        Method getFooMethod = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Grault")
                                                          .getDeclaredMethod("getFoo"),
                                                  "The method 'getFoo' does not exist in jad.Grault class.");
 

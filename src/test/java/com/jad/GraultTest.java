@@ -20,7 +20,7 @@ class GraultTest {
 
     @BeforeAll
     static void beforeAll() {
-        GraultTest.graultClass = Utils.testIfClassExists("com.jad.jad.Grault");
+        GraultTest.graultClass = Utils.testIfClassExists("com.jad.Grault");
     }
 
     @Test
@@ -55,14 +55,14 @@ class GraultTest {
 
     @Test
     void fooAttributeTest() {
-        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.jad.Foo", "foo", GraultTest.graultClass);
+        Utils.testIfPrivateAttributeExistsWithGoodType("com.jad.Foo", "foo", GraultTest.graultClass);
     }
 
     @Test
     void constructorTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Bar"),
                                                "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Foo"),
                                                "The class jad.Foo does not exist.");
         Constructor<?> fooConstructor = assertDoesNotThrow(() -> fooClass.getDeclaredConstructor(barClass),
                                                            "The constructor of jad.Foo does not exist.");
@@ -91,9 +91,9 @@ class GraultTest {
 
     @Test
     void getFooTest() {
-        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Bar"),
+        Class<?> barClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Bar"),
                                                "The class jad.Bar does not exist.");
-        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.jad.Foo"),
+        Class<?> fooClass = assertDoesNotThrow(() -> ClassLoader.getSystemClassLoader().loadClass("com.jad.Foo"),
                                                "The class jad.Foo does not exist.");
         Constructor<?> fooConstructor = assertDoesNotThrow(() -> fooClass.getDeclaredConstructor(barClass),
                                                            "The constructor of jad.Foo does not exist.");
