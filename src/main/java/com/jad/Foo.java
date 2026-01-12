@@ -25,4 +25,28 @@ public class Foo {
     public void addGrault() {
         this.graults.add(new Grault(this));
     }
+
+    public Bar getBar() {
+        return this.bar;
+    }
+
+    public ArrayList<Baz> getBazs() {
+        return this.bazs;
+    }
+
+    public Qux getQux() {
+        return this.qux;
+    }
+
+    public Corge getCorge() {
+        return this.corge;
+    }
+
+    public ArrayList<Grault> getGraults() {
+        return this.graults;
+    }
+
+    public void setCorge(Corge corge) {
+        this.corge = corge;
+    }
 }
