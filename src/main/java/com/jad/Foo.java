@@ -11,6 +11,7 @@ public class Foo {
     private ArrayList<Grault> graults = new ArrayList<>();
     Foo(Bar bar) {
         this.bar = bar;
+        this.qux = new Qux();
     }
 
     public void addBaz(Baz baz) {
