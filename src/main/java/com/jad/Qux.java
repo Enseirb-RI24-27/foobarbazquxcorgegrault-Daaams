@@ -1,4 +1,4 @@
-package jad.jad;
+package com.jad;
 
 public class Qux {
 }

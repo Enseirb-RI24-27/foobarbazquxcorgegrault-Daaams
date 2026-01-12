@@ -1,4 +1,4 @@
-package jad.jad;
+package com.jad;
 
 import java.util.ArrayList;
 
