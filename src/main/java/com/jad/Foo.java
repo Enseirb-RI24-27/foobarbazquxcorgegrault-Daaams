@@ -38,9 +38,6 @@ public class Foo {
     }
 
     public Corge getCorge() {
-        if (this.corge != null) {
-            this.corge.setFoo(null);
-        }
         return this.corge;
     }
 
@@ -49,6 +46,9 @@ public class Foo {
     }
 
     public void setCorge(Corge corge) {
+        if (this.corge != null) {
+            this.corge.setFoo(null);
+        }
         this.corge = corge;
     }
 }
