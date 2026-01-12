@@ -12,7 +12,6 @@ public class Foo {
     Foo(Bar bar) {
         this.bar = bar;
         this.qux = new Qux();
-        this.corge = new Corge(this);
     }
 
     public void addBaz(Baz baz) {
